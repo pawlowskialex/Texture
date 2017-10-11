@@ -24,6 +24,15 @@
 
 #import <AsyncDisplayKit/ASDisplayNodeExtras.h>
 
+@interface ASControlNode (Private)
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
+
+@end
+
 @implementation ASImageNode (tvOS)
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

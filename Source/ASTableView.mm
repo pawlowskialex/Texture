@@ -116,7 +116,9 @@ static NSString * const kCellReuseIdentifier = @"_ASTableViewCell";
     self.backgroundColor = node.backgroundColor;
     self.selectionStyle = node.selectionStyle;
     self.selectedBackgroundView = node.selectedBackgroundView;
+#if TARGET_OS_IOS
     self.separatorInset = node.separatorInset;
+#endif
     self.selectionStyle = node.selectionStyle;
     self.accessoryType = node.accessoryType;
     
@@ -1765,10 +1767,11 @@ static NSString * const kCellReuseIdentifier = @"_ASTableViewCell";
    * Weirdly enough, Apple expects the return value in tableView:heightForRowAtIndexPath: to _include_ the height
    * of the separator, if there is one! So if rectForRow would return 44.0 we need to use 43.5.
    */
+#if TARGET_OS_IOS
   if (self.separatorStyle != UITableViewCellSeparatorStyleNone) {
     rect.size.height -= 1.0 / ASScreenScale();
   }
-
+#endif
   return (fabs(rect.size.height - size.height) < FLT_EPSILON);
 }
 

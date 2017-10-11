@@ -232,9 +232,11 @@ NSAttributedString *ASCleanseAttributedStringOfCoreTextAttributes(NSAttributedSt
   // Note that kCTParagraphStyleSpecifierLineSpacing is deprecated and will die soon. We should not be using it.
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    CGFloat lineSpacing;
-    if (CTParagraphStyleGetValueForSpecifier(coreTextParagraphStyle, kCTParagraphStyleSpecifierLineSpacing, sizeof(lineSpacing), &lineSpacing))
-        newParagraphStyle.lineSpacing = lineSpacing;
+#if TARGET_OS_IOS
+  CGFloat lineSpacing;
+  if (CTParagraphStyleGetValueForSpecifier(coreTextParagraphStyle, kCTParagraphStyleSpecifierLineSpacing, sizeof(lineSpacing), &lineSpacing))
+    newParagraphStyle.lineSpacing = lineSpacing;
+#endif
 #pragma clang diagnostic pop
 
   // kCTParagraphStyleSpecifierParagraphSpacing -> paragraphSpacing

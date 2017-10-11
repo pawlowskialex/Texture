@@ -27,10 +27,12 @@
   
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#if TARGET_OS_IOS
   CGFloat lineSpacing;
   if (CTParagraphStyleGetValueForSpecifier(CTStyle, kCTParagraphStyleSpecifierLineSpacing, sizeof(CGFloat), &lineSpacing)) {
     style.lineSpacing = lineSpacing;
   }
+#endif
 #pragma clang diagnostic pop
   
   CGFloat paragraphSpacing;
@@ -116,11 +118,13 @@
   
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#if TARGET_OS_IOS
   CGFloat lineSpacing = self.lineSpacing;
   set[count].spec = kCTParagraphStyleSpecifierLineSpacing;
   set[count].valueSize = sizeof(CGFloat);
   set[count].value = &lineSpacing;
   count++;
+#endif
 #pragma clang diagnostic pop
   
   CGFloat paragraphSpacing = self.paragraphSpacing;

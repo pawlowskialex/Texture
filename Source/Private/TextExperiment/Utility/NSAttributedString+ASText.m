@@ -600,7 +600,9 @@ return style. _attr_;
   dispatch_once(&onceToken, ^{
     failSet = [NSMutableSet new];
     [failSet addObject:(id)kCTGlyphInfoAttributeName];
+#if TARGET_OS_IOS
     [failSet addObject:(id)kCTCharacterShapeAttributeName];
+#endif
     [failSet addObject:(id)kCTLanguageAttributeName];
     [failSet addObject:(id)kCTRunDelegateAttributeName];
     [failSet addObject:(id)kCTBaselineClassAttributeName];
@@ -1049,7 +1051,9 @@ style. _attr_ = _attr_; \
 }
 
 - (void)as_setCharacterShape:(NSNumber *)characterShape range:(NSRange)range {
+#if TARGET_OS_IOS
   [self as_setAttribute:(id)kCTCharacterShapeAttributeName value:characterShape range:range];
+#endif
 }
 
 - (void)as_setRunDelegate:(CTRunDelegateRef)runDelegate range:(NSRange)range {

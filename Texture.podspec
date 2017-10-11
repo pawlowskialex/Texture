@@ -11,7 +11,8 @@ Pod::Spec.new do |spec|
 
   spec.documentation_url = 'http://texturegroup.org/appledoc/'
 
-  spec.weak_frameworks = 'Photos','MapKit','AssetsLibrary'
+  spec.weak_frameworks = 'Photos','MapKit'
+  spec.ios.weak_frameworks = 'AssetsLibrary'
   spec.requires_arc = true
 
   spec.ios.deployment_target = '8.0'
