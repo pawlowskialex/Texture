@@ -938,9 +938,11 @@ static NSString * const kCellReuseIdentifier = @"_ASTableViewCell";
    * to return 44. UITableView will make a cell of height 44 with a content view
    * of height 43.5.
    */
+#if TARGET_OS_IOS
   if (tableView.separatorStyle != UITableViewCellSeparatorStyleNone) {
     height += 1.0 / ASScreenScale();
   }
+#endif
   return height;
 }
 
