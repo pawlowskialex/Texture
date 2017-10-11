@@ -15,9 +15,7 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
 
   spec.ios.deployment_target = '8.0'
-
-  # Uncomment when fixed: issues with tvOS build for release 2.0
-  # spec.tvos.deployment_target = '9.0'
+  spec.tvos.deployment_target = '9.0'
 
   # Subspecs
   spec.subspec 'Core' do |core|
@@ -60,9 +58,6 @@ Pod::Spec.new do |spec|
       yoga.dependency 'Yoga', '1.6.0'
       yoga.dependency 'Texture/Core'
   end
-
-  # Include optional PINRemoteImage module
-  spec.default_subspec = 'PINRemoteImage'
 
   spec.social_media_url = 'https://twitter.com/TextureiOS'
   spec.library = 'c++'
