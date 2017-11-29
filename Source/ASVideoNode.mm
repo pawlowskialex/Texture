@@ -59,6 +59,7 @@ static NSString * const kRate = @"rate";
     unsigned int delegateVideoNodeDidStallAtTimeInterval:1;
     unsigned int delegateVideoNodeDidRecoverFromStall:1;
     unsigned int delegateVideoNodeDidFailToLoadValueForKey:1;
+    unsigned int delegateVideoNodeDidFailToPlayAsset:1;
   } _delegateFlags;
   
   BOOL _shouldBePlaying;
@@ -162,6 +163,9 @@ static NSString * const kRate = @"rate";
   
   if ([asset isPlayable] == NO) {
     NSLog(@"Asset is not playable.");
+    if (_delegateFlags.delegateVideoNodeDidFailToPlayAsset) {
+      [self.delegate videoNode:self didFailToPlayAsset:asset];
+    }
     return;
   }
 
@@ -613,6 +617,7 @@ static NSString * const kRate = @"rate";
     _delegateFlags.delegateVideoNodeDidStallAtTimeInterval = [delegate respondsToSelector:@selector(videoNode:didStallAtTimeInterval:)];
     _delegateFlags.delegateVideoNodeDidRecoverFromStall = [delegate respondsToSelector:@selector(videoNodeDidRecoverFromStall:)];
     _delegateFlags.delegateVideoNodeDidFailToLoadValueForKey = [delegate respondsToSelector:@selector(videoNode:didFailToLoadValueForKey:asset:error:)];
+    _delegateFlags.delegateVideoNodeDidFailToPlayAsset = [delegate respondsToSelector:@selector(videoNode:didFailToPlayAsset:)];
   }
 }
 

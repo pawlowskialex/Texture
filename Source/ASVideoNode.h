@@ -148,13 +148,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)videoNodeDidRecoverFromStall:(ASVideoNode *)videoNode;
 /**
- * @abstract Delegate method invoked when an error occurs while trying trying to load an asset
+ * @abstract Delegate method invoked when an error occurs while trying to load an asset.
  * @param videoNode The videoNode.
  * @param key The key of value that failed to load.
  * @param asset The asset.
  * @param error The error that occurs.
  */
 - (void)videoNode:(ASVideoNode *)videoNode didFailToLoadValueForKey:(NSString *)key asset:(AVAsset *)asset error:(NSError *)error;
+/**
+ * @abstract Delegate method invoked when an error occurs while trying to play asset and failed.
+ * @param videoNode The videoNode.
+ * @param asset The asset.
+ */
+- (void)videoNode:(ASVideoNode *)videoNode didFailToPlayAsset:(AVAsset *)asset;
 
 @end
 
